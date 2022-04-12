@@ -14,15 +14,12 @@ export async function connect(
 }
 
 async function connectedDocument(url: string): ConnectedDocument {
-  const document = await getHtmlDocument(url);
+  const document = await getHtmlDocument(await fetchDom(url));
   return document;
 }
 
-async function getHtmlDocument(
-  url: string,
-  mType: DOMParserMimeType = "text/html"
-) {
-  return new DOMParser().parseFromString(await fetchDom(url), mType);
+function getHtmlDocument(src: string, mType: DOMParserMimeType = "text/html") {
+  return new DOMParser().parseFromString(src, mType);
 }
 
 async function fetchDom(url: string) {
