@@ -4,14 +4,16 @@ import {
 } from "https://deno.land/x/deno_dom@v0.1.22-alpha/deno-dom-wasm.ts";
 import { HTMLDocument } from "https://deno.land/x/deno_dom@v0.1.22-alpha/src/dom/document.ts";
 
+type ConnectedDocument = Promise<HTMLDocument | null>;
+
 export async function connect(
   url = "https://news.ycombinator.com/"
-): Promise<HTMLDocument | null> {
+): ConnectedDocument {
   const document = await connectedDocument(url);
   return document;
 }
 
-async function connectedDocument(url: string) {
+async function connectedDocument(url: string): ConnectedDocument {
   const document = await getHtmlDocument(url);
   return document;
 }
