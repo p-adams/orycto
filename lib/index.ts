@@ -14,16 +14,16 @@ export async function connect(
 }
 
 async function connectedDocument(url: string): ConnectedDocument {
-  const document = await getHtmlDocument(await fetchDom(url));
-  return document;
+  return await getHtmlDocument(await fetchDom(url));
 }
 
-function getHtmlDocument(src: string, mType: DOMParserMimeType = "text/html") {
+export function getHtmlDocument(
+  src: string,
+  mType: DOMParserMimeType = "text/html"
+) {
   return new DOMParser().parseFromString(src, mType);
 }
 
 async function fetchDom(url: string) {
   return await (await fetch(url)).text();
 }
-
-connect();
