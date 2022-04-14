@@ -1,5 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.106.0/testing/asserts.ts";
-import * as orycto from "./mod.ts";
+import { assertEquals, orycto } from "../deps.ts";
 
 Deno.test("#getHtmlDocument", () => {
   assertEquals(
